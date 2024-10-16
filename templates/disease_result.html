@@ -1,0 +1,139 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>Disease Result</title>
+
+    <style>
+      .centered_img {
+        position: absolute;
+        top: 60%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 45px;
+      }
+      .navbar{
+        background-color:#6ca8e4;
+      }
+    </style>
+  </head>
+  <body>
+    {% comment %} <div class="container-flex">
+      
+      {% for message in messages %}
+                 
+      <div class="row justify-content-center mt-4">
+        <div class="col-6">
+          <h2><strong>  {{message}}  </strong></h2>
+        </div>
+      </div>
+              
+      {% endfor %}
+
+    </div>  {% endcomment %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+    {% comment %} height:687px;  {% endcomment %}
+
+
+    <div class="container-flex">
+      <img src="{% static "images/fav.jpg" %}" alt="My image" style="height:100%; width:100%; opacity: .6;">
+
+
+      
+      
+    </div>
+    <div class="centered_img">
+      <form class="box" method="post" action="/predict" enctype="multipart/form-data">
+        <div class="box__input " style="margin-bottom: 150px;"><br>
+
+          <center><strong>
+            <!-- <h3 style="font">GradientBoostingClassifier</h3> -->
+            <p class="text-light">Using GradientBoostingClassifier Model</p>
+            <p class="text-light">Accuracy is 0.74%</p>
+            
+          </strong></center>  <br>
+          <center><strong>  {{result1}}  </strong></center>
+          <br>
+          
+          
+                    <div class="row">
+                      <div class="col-md-4"></div>
+                      <div class="col-md-4"><a href="/sample" class="btn btn-block btn-primary">Back to Home</a></div>
+                      <div class="col-md-4"></div>
+          
+                      
+        </div>
+        
+      </form>
+    </div>
+    
+    
+    </div>
+
+
+
+
+
+
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

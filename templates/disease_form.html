@@ -1,0 +1,175 @@
+{% extends 'basic.html' %}
+
+{% block title %} {% endblock %}
+
+{% block body %}
+{% load static %}
+
+
+<div class="container mt-2">
+  <h1><strong>
+      <center>Predict Your Cardiovascular Disease</center>
+    </strong></h1>
+  {% comment %} Heart Rate {% endcomment %}
+  <div class="heart-rate">
+    <svg version="1.0" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+      width="150px" height="73px" viewBox="0 0 150 73" enable-background="new 0 0 150 73" xml:space="preserve">
+      <polyline fill="none" stroke="#009B9E" stroke-width="3" stroke-miterlimit="10"
+        points="0,45.486 38.514,45.486 44.595,33.324 50.676,45.486 57.771,45.486 62.838,55.622 71.959,9 80.067,63.729 84.122,45.486 97.297,45.486 103.379,40.419 110.473,45.486 150,45.486" />
+    </svg>
+    <div class="fade-in"></div>
+    <div class="fade-out"></div>
+  </div>
+
+
+  <div class="container col-md-7">
+    <div class="card text-white bg-info mb-3 ">
+      {% comment %} <div class="card text-white bg-info mb-3" style="max-width: 180rem;"> {% endcomment %}
+
+        <form action="/predict_disease" method="post">{% csrf_token %}
+          <div class="container mt-4">
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="age">Age</label>
+                <input type="number" class="form-control" id="age" name="age" placeholder="Age">
+              </div>
+              <div class="form-group col-md-6">
+                <label for="sex">Patient Gender</label>
+                  <select class="form-control" id="sex" name="sex">
+                    <option value="0">Female</option>
+                  <option value="1">Male</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="cp">Chest Pain</label>
+                <select class="form-control" id="cp" name = "cp" required>
+                  <option disabled selected value> -- Select an Option -- </option>
+                  <option value = "0">Typical Angina</option>
+                  <option value = "1">Atypical Angina</option>
+                  <option value = "2">Non-anginal Pain</option>
+                  <option value = "3">Asymptomatic</option>
+                </select>
+                {% comment %} <input type="number" class="form-control" id="cp" name="cp" placeholder="Blood Pressure"> {% endcomment %}
+              </div>
+              <div class="form-group col-md-6">
+                <label for="Resting BP">Resting Blood Pressure in mm Hg</label>
+                <input type="number" class="form-control" id="trestbps" name="trestbps" placeholder="Cholestrol" required>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="serum_cholesterol">Serum Cholestrol in mg/dl</label>
+                <input type="number" class="form-control" id="serum_cholesterol" name="serum_cholesterol" placeholder="Blood Shugar" required>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="fasting_blood_sugar">Fasting Blood Sugar</label>
+                <select class="form-control" id="fbs" name="fbs" required>
+                  <option disabled selected value> -- Select an Option -- </option>
+                  <option value = "0">False</option>
+                  <option value = "1">True</option>
+                </select>
+                {% comment %} <input type="number" class="form-control" id="fasting_blood_sugar" name="fasting_blood_sugar" placeholder="ECG"> {% endcomment %}
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="resting_ecg">Resting Electrocardiographic Result</label>
+                <select class="form-control" id="restecg" name="restecg" required>
+								  <option disabled selected value> -- Select an Option -- </option>
+								  <option value = "0">Normal</option>
+								  <option value = "1">Having ST-T wave abnormality  </option>
+								  <option value = "2"> Probable or definite left ventricular hypertrophy  </option>
+								</select>
+                {% comment %} <input type="number" class="form-control" id="resting_ecg" placeholder="Heart Rate"> {% endcomment %}
+              </div>
+              <div class="form-group col-md-6">
+                <label for="max_heart_rate">Maximum Heart Rate</label>
+                <input type="number" class="form-control" id="thalach" name="thalach" placeholder="InducedAngina">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="exercise_induced_angina">Excercise Induced Angina</label>
+                <select class="form-control" id="oldpeak" name="oldpeak" required>
+								  <option disabled selected value> -- Select an Option -- </option>
+								  <option value = "0">No</option>
+								  <option value = "1">Yes</option>
+								</select>
+                {% comment %} <input type="number" class="form-control" id="exercise_induced_angina" name="exercise_induced_angina" placeholder="OldPeak"> {% endcomment %}
+              </div>
+              <div class="form-group col-md-6">
+                <label for="st_depression">ST Depression Induced</label>
+                <input type="number" step="any" class="form-control" id="exang" name="exang" placeholder="Slope">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="st_slope">Slope of the peak exercise ST segment</label>
+                <select class="form-control" id="slope" name="slope" required>
+                  <option disabled selected value> -- Select an Option -- </option>
+                  <option value = "0">Upsloping</option>
+                  <option value = "1">Flat</option>
+                  <option value = "2">Downsloping</option>
+                </select>
+                {% comment %} <input type="number" class="form-control" id="st_slope" name="st_slope" placeholder="VesselsNumber"> {% endcomment %}
+              </div>
+              <div class="form-group col-md-6">
+                <label for="number_of_vessels">Number of major vessels (0-3) colored by flourosopy</label>
+                <select class="form-control" id="ca" name = "ca" required>
+                  <option disabled selected value> -- Select an Option -- </option>
+                  <option value = "0">0</option>
+                  <option value = "1">1</option>
+                  <option value = "2">2</option>
+                  <option value = "3">3</option>
+                </select>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="thallium_scan_results">Thalium Scan Results</label>
+                <select class="form-control" id="thal" name = "thal" required>
+                  <option disabled selected value> -- Select an Option -- </option>
+                  <option value = "3">Normal</option>
+                  <option value = "6">Fixed defect</option>
+                  <option value = "7">Reversable defect</option>
+                </select>
+              </div>
+            </div>
+
+            <center>
+              <button type="submit" value="Result" class="btn btn-primary mb-4">Submit</button>
+            </center>
+          </div>
+          <div id="result">
+            <strong style="color:red">{{result}}</strong>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  {% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

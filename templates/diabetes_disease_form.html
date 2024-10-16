@@ -1,0 +1,97 @@
+{% extends 'basic.html' %}
+
+{% block title %} {% endblock %}
+
+{% block body %}
+{% load static %}
+
+
+<div class="container mt-2">
+  <h1><strong>
+      <center>Predict Your Diabetes</center>
+    </strong></h1>
+    
+  <div class="heart-rate">
+    <svg version="1.0" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+      width="150px" height="730px" viewBox="0 0 150 73" enable-background="new 0 0 150 73" xml:space="preserve">
+      <polyline fill="none" stroke="#009B9E" stroke-width="3" stroke-miterlimit="10"
+        points="0,45.486 38.514,45.486 44.595,33.324 50.676,45.486 57.771,45.486 62.838,55.622 71.959,9 80.067,63.729 84.122,45.486 97.297,45.486 103.379,40.419 110.473,45.486 150,45.486" />
+    </svg>
+    <div class="fade-in"></div>
+    <div class="fade-out"></div>
+  </div>
+
+
+  <div class="container col-md-7">
+    <div class="card text-white bg-info mb-3 ">
+
+        <form action="predict_disease" method="post">{% csrf_token %}
+          <div class="container mt-4">
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="Pregnancies">No.of Pregnancies</label>
+                <input type="text" class="form-control" id="pregnancies" name="1" placeholder="eg: 0,2,3">
+              </div>
+              <div class="form-group col-md-6">
+                <label for="glucose">Glucose</label>
+                <input type="text" class="form-control" id="glucose" name="2" placeholder="eg: 80,120,150">
+              </div>
+              
+              
+            </div>
+            <div class="form-row">
+              
+              <div class="form-group col-md-6">
+                <label for="BloodPressure">BloodPressure</label>
+                <input type="text" class="form-control" id="blood_pressure" name="3" placeholder="eg: 50,60,70" required>
+              </div>
+
+              <div class="form-group col-md-6">
+                <label for="SkinThickness">SkinThickness</label>
+                <input type="text" class="form-control" id="skin_thickness" name="4" placeholder="eg: 20,30,40" required>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="Insulin">Insulin</label>
+                <input type="text" class="form-control" id="insulin" name="5" placeholder="eg: 0,100,200" required>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="BMI">BMI</label>
+                <input type="text" class="form-control" id="BMI" name="6" placeholder="eg: 25,33,45.5" required>
+              </div>
+              
+            </div>
+            <div class="form-row">
+              
+              <div class="form-group col-md-6">
+                <label for="DiabetesPedigreeFunction">DiabetesPedigreeFunction</label>
+                <input type="text" class="form-control" id="diabetes_pedigree_function" name="7" placeholder="eg: 0.248,0.672">
+              </div>
+
+              <div class="form-group col-md-6">
+                <label for="Age">Age</label>
+                <input type="text" class="form-control" id="age" name="8" placeholder="eg: 25,35,45">
+              </div>
+            </div>
+
+
+
+
+
+
+            <center>
+              <button type="submit" class="btn btn-primary mb-4">Submit</button>
+            </center>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  {% endblock %}
+
+
+
+
+
